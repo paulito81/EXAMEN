@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{eventController.eventId}"/>
+            <f:viewAction action="#{eventController.getDetailedEvent()}"/>
+        </f:metadata>
+
+        <h2><h:outputText value="#{eventController.event.title}"/></h2>
+        <ul>
+            <li>Type: <h:outputText value="#{eventController.event.eventtype}"/></li>
+            <li>Title: <h:outputText value="#{eventController.event.title}"/></li>
+            <li>Description: <h:outputText value="#{eventController.event.description}"/></li>
+            <li>
+                <p:column headerText="Details" colspan="3" style="text-align: left">
+                    <p:link outcome="event-time_details" value="Details">
+                        <f:param name="id" value="#{.id}"/>
+                    </p:link>
+                </p:column>
+            </li>
+
+        </ul>
+    </ui:define>
+</ui:composition>
+</html>

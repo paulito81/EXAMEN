@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <h:form>
+            <p:messages/>
+            <p:panel header="Register A New Subject">
+                <p:panelGrid columns="2" columnClasses="label, value">
+
+                    <h:outputText style="font-size: large" value="Name:"/>
+                    <h:inputText id="Name" value="#{subjectController.subject.name}"/>
+                    <h:outputText style="font-size: large" value="Location"/>
+
+
+                    <h:selectOneMenu id="location" value="#{subjectController.locationId}">
+                        <f:selectItems var="location" value="#{subjectController.getLocations()}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel style="font-size: large" value="Users:"/>
+                    <h:selectOneMenu style="font-size: large" id="userId" value="#{subjectController.selectedId}">
+                        <f:selectItems value="#{subjectController.getUsers()  }"/>
+                    </h:selectOneMenu>
+                </p:panelGrid>
+                <br/>
+
+                <div align="left">
+                    <h:commandButton style="font-size: x-large" icon="ui-icon-check" value="Submit" action="#{subjectController.createNewSubject() }"/>
+                </div>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

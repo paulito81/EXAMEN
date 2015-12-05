@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <h:form>
+
+            <p:panel header="Register A New User">
+                <p:messages/>
+                <p:panelGrid columns="2" columnClasses="label, value">
+
+                    <h:outputText style="font-size: large" value="E-mail"  />
+                    <h:inputText style="font-size: large" id="email" value="#{userController.user.email}" required="true" label="Email"/>
+                    <h:outputText style="font-size: large" value="Password"/>
+                    <h:inputSecret style="font-size: large" id="password" value="#{userController.user.password}" required="true" label="Password"/>
+                    <h:outputLabel style="font-size: large" value="Type"/>
+                    <h:selectOneMenu style="font-size: large" id="WorkType" value="#{userController.user.userType}" required="true" label="Worktype">
+                        <f:selectItems value="#{userController.getWorkTypes()}"/>
+                    </h:selectOneMenu>
+                </p:panelGrid>
+                <br/>
+                <div align="left">
+                    <h:commandButton style="font-size: x-large" icon="ui-icon-check" value="Submit" action="#{userController.persistNewUser() }"/>
+                </div>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
