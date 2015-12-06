@@ -13,6 +13,7 @@ import java.util.List;
 })
 @SequenceGenerator(name = "SEQ_SUBJECT", initialValue = 50)
 public class Subject {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SUBJECT")
     private int id;

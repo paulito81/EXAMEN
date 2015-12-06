@@ -11,16 +11,18 @@ import java.util.List;
 @NamedQuery(name = "User.getAll", query = "select u from User u")
 @SequenceGenerator(name = "SEQ_USER", initialValue = 50)
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USER")
     private int id;
 
     @NotNull
-    @Pattern(regexp = "^\\S+@\\S+\\.\\S+$")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
     private String email;
 
     @NotNull
     @ValidPassword
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^+&=])(?=\\S+$).{8,}$")
     private String password;
 
     @Enumerated(EnumType.STRING)

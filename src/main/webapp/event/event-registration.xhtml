@@ -8,46 +8,41 @@
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
-        <h:form>
-
-            <p:messages/>
-            <p:panel header="Register A New Event">
-                <p:panelGrid columns="2" columnClasses="label, value">
-
-                    <h:outputText style="font-size: large" value="EventType"/>
-                    <h:selectOneMenu style="font-size: large" id="EventType" value="#{eventController.event.eventtype}"
-                                     required="true" label="EventType">
-                        <f:selectItems value="#{eventController.getEventTypes()}"/>
-                    </h:selectOneMenu>
-
-                    <h:outputText style="font-size: large" value="Title"/>
-                    <h:inputText style="font-size: large" id="title" value="#{eventController.event.title}"
-                                 required="true" label="Title"/>
-
-                    <h:outputText style="font-size: large" value="Description"/>
-                    <h:inputText style="font-size: large" id="description" value="#{eventController.event.description}"
-                                 required="true" label="Description"/>
-                </p:panelGrid>
-            </p:panel>
-        </h:form>
         <h:form id="form">
-            <p:growl id="msgs" showDetail="true"/>
-            <h:panelGrid columns="2" cellpadding="5">
 
-                <p:outputLabel for="datetime" value="Datetime:" />
-                <p:calendar id="datetime" value="#{calendarView.date10}" pattern="MM/dd/yyyy HH:mm:ss" />
+        <!--<p:messages/> -->
+        <p:growl id="msgs" showDetail="true"/>
+        <p:panel header="Register A New Event">
+            <h:panelGrid columns="2" columnClasses="label, value">
+
+                <h:outputText style="font-size: large" value="EventType"/>
+                <h:selectOneMenu style="font-size: large" id="EventType" value="#{eventController.event.eventtype}" >
+                    <f:selectItems value="#{eventController.getEventTypes()}"/>
+                </h:selectOneMenu>
+
+                <h:outputText style="font-size: large" value="Title"/>
+                <h:inputText style="font-size: large" id="title" value="#{eventController.event.title}" required="true" label="Title"/>
+
+                <h:outputText style="font-size: large" value="Description"/>
+                <h:inputText style="font-size: large" id="description" value="#{eventController.event.description}" required="true" label="Description"/>
+
+                <h:outputText for="datetime" value="Datetime:"/>
+                <p:calendar id="datetime" value="#{calendarView.date10}" pattern="MM/dd/yyyy HH:mm:ss"/>
+
             </h:panelGrid>
-            <p:commandButton update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" value="Submit" action="#{eventController.persistNewEvent()}"/>
-            <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                <p:panelGrid id="display" columns="2" columnClasses="label,value">
+        </p:panel>
+        <p:commandButton  value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" action="#{eventController.persistNewEvent()}"/>
 
-                    <h:outputText value="Datetime:"/>
-                    <h:outputText value="#{calendarView.date10}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss"/>
-                    </h:outputText>
-                </p:panelGrid>
-                    <br/>
-            </p:dialog>
+        <p:dialog modal="true" resizable="false" header="New Event" widgetVar="dlg" showEffect="fold">
+            <h:panelGrid id="display" columns="2" columnClasses="label, value">
+                <h:outputText value="Datetime:"/>
+
+                <h:outputText value="#{calendarView.date10}">
+                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss"/>
+                </h:outputText>
+
+            </h:panelGrid>
+        </p:dialog>
         </h:form>
 
     </ui:define>

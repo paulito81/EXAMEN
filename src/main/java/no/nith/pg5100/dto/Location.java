@@ -10,12 +10,14 @@ import javax.validation.constraints.NotNull;
 })
 @SequenceGenerator(name = "SEQ_LOCATION", initialValue = 50)
 public class Location {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_LOCATION")
     private int id;
 
     @NotNull
     private String room;
+
     @NotNull
     private String building;
 

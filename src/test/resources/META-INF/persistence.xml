@@ -7,6 +7,9 @@
         <class>no.nith.pg5100.dto.User</class>
         <class>no.nith.pg5100.dto.Subject</class>
         <class>no.nith.pg5100.dto.Location</class>
+        <class>no.nith.pg5100.dto.EventDetail</class>
+        <class>no.nith.pg5100.dto.Event</class>
+        <class>no.nith.pg5100.dto.EventType</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:pg5100-lms"/>

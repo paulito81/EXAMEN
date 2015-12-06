@@ -1,9 +1,10 @@
 package no.nith.pg5100.dto;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by Paul on 03.12.2015.
@@ -13,57 +14,51 @@ import javax.validation.constraints.NotNull;
 @NamedQuery(name = "Event.getAllEvents", query = "select e from Event e")
 @SequenceGenerator(name = "SEQ_EVENT", initialValue = 50)
 public class Event {
-/*
-    public Event(String title, String description, EventType eventtype, Subject subject {
-        this.title = title;
-        this.description = description;
-        this.eventtype = eventtype;
-        this.subject = subject;
-        this.eventDetail = eventDetail;
-    }
-*/
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_EVENT")
-    public int id;
+    private int id;
 
-    @NotNull @Min(5) @Max(25)
-    String title;
+    @NotNull @Size(min = 5, max =25)
+    private String title;
 
-    @NotNull @Min(1) @Max(100)
-    String description;
+    @NotNull @Size(min = 5, max =100)
+    private String description;
+
+   // private String name;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    EventType eventtype;
+    private EventType eventtype;
+
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinTable(name = "FK_EVENT")
-    private Subject subject;
-/*
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinTable(name = "EVENT_DET")
+    @JoinColumn(name = "EVENT_DET")
     private EventDetail eventDetail;
 
-*/
     public Event() {
 
     }
+    public Event(String title, String description, EventType eventtype) {
+        this.title = title;
+        this.description = description;
+        this.eventtype = eventtype;
+    }
+/*
+    public String getName() {
+        return name;
+    }
 
-
+    public void setName(String name) {
+        this.name = name;
+    }
+*/
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
     }
 
     public EventType getEventtype() {
@@ -89,7 +84,7 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
-  /*
+
     public EventDetail getEventDetail() {
         return eventDetail;
     }
@@ -97,6 +92,13 @@ public class Event {
     public void setEventDetail(EventDetail eventDetail) {
         this.eventDetail = eventDetail;
     }
+   /*
+    public Subject getSubject() {
+        return subject;
+    }
 
-*/
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+    */
 }

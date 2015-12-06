@@ -34,14 +34,14 @@ public class UserTest {
         user.setPassword("a");
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);
-        assertEquals(2, violations.size());
+        assertEquals(3, violations.size());
     }
 
     @Test
     public void validUser() throws Exception {
         User user = new User();
         user.setEmail("test@test.com");
-        user.setPassword("abC123");
+        user.setPassword("abC2FF123$");
         user.setUserType(UserType.STUDENT);
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);

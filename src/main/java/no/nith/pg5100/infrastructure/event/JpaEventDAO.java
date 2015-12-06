@@ -20,7 +20,6 @@ public class JpaEventDAO implements EventDAO {
 
     public JpaEventDAO(){
 
-
     }
 
     public JpaEventDAO(EntityManager entityManager) {
