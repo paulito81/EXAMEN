@@ -2,17 +2,18 @@ package no.nith.pg5100.infrastructure.subject;
 
 import no.nith.pg5100.dto.Subject;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class JpaSubjectDaoIT {
     private EntityManagerFactory factory;
@@ -55,5 +56,17 @@ public class JpaSubjectDaoIT {
     public void getAll() throws Exception {
         List<Subject> subjects = subjectDao.getAll();
         assertEquals(2, subjects.size());
+    }
+
+    @Test
+    public void removeSubject() throws Exception{
+        Subject subject = subjectDao.findById(1);
+        boolean removed = subjectDao.removeSubject(subject.getId());
+        Assert.assertTrue(removed);
+    }
+    @Test
+    public void getAllDetachedSubjects() throws Exception{
+        List<Subject> subjects = subjectDao.getAllDetachedSubjects();
+        Assert.assertTrue(subjects.size() == 0);
     }
 }

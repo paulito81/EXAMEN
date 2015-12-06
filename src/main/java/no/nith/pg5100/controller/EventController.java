@@ -2,6 +2,7 @@ package no.nith.pg5100.controller;
 
 
 import no.nith.pg5100.dto.Event;
+import no.nith.pg5100.dto.EventDetail;
 import no.nith.pg5100.dto.EventType;
 import no.nith.pg5100.infrastructure.event.EventDAO;
 
@@ -25,10 +26,23 @@ public class EventController {
     private int eventId;
     private Event event;
 
+    public EventDetail getEventDetail() {
+        return eventDetail;
+    }
+
+    public void setEventDetail(EventDetail eventDetail) {
+        this.eventDetail = eventDetail;
+    }
+
+    private EventDetail eventDetail;
+
+
     @PostConstruct
     public void init() {
         event = new Event();
     }
+
+
 
     public void persistNewEvent(){
         eventDAO.persistEvent(event);
@@ -62,4 +76,5 @@ public class EventController {
         return Arrays.asList(EventType.values()).stream().map(e-> new SelectItem(e, e.name())).collect(Collectors.toList());
 
     }
+
 }

@@ -9,17 +9,21 @@
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
 
+        <p:panel header="Register A New Event">
+        <p:panelGrid columns="2" columnClasses="label, value">
+
         <f:metadata>
-            <f:viewParam name="id" value="#{eventController.eventId}"/>
+            <f:viewParam name="id" value="#{eventController.eventDetail.id}"/>
             <f:viewAction action="#{eventController.getDetailedEvent()}"/>
         </f:metadata>
 
-        <h2><h:outputText value="#{eventController.event.id}"/></h2>
+        <h2><h:outputText value="#{eventController.eventDetail.id}"/></h2>
         <ul>
-            <li>Start@time: <h:outputText value="#{eventController.event.startPoint}"/></li>
-            <li>Finish@time: <h:outputText value="#{eventController.event.stopPoint}"/></li>
-
+            <li>Start@time: <h:outputText value="#{eventController.eventDetail.startPoint}"/></li>
+            <li>Finish@time: <h:outputText value="#{eventController.eventDetail.stopPoint}"/></li>
         </ul>
+        </p:panelGrid>
+        </p:panel>
     </ui:define>
 </ui:composition>
 </html>

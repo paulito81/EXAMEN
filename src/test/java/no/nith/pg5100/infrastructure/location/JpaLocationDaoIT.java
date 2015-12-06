@@ -1,5 +1,6 @@
 package no.nith.pg5100.infrastructure.location;
 
+import junit.framework.Assert;
 import no.nith.pg5100.dto.Location;
 import org.junit.After;
 import org.junit.Before;
@@ -8,10 +9,10 @@ import org.junit.Test;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class JpaLocationDaoIT {
     private EntityManagerFactory factory;
@@ -54,5 +55,19 @@ public class JpaLocationDaoIT {
     public void getAll() throws Exception {
         List<Location> locations = locationDao.getAll();
         assertEquals(2, locations.size());
+    }
+
+    @Test
+    public void removeLocation() throws Exception{
+        Location location = locationDao.findById(1);
+        boolean removed = locationDao.removeLocation(location.getId());
+
+        Assert.assertTrue(removed);
+    }
+
+    @Test
+    public void getAllDetachdLocations()throws Exception{
+        List<Location> locations = locationDao.getAllDetachedLocations();
+        Assert.assertTrue(locations.size() > 0);
     }
 }

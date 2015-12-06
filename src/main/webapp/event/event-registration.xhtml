@@ -10,10 +10,9 @@
     <ui:define name="content">
         <h:form id="form">
 
-        <!--<p:messages/> -->
         <p:growl id="msgs" showDetail="true"/>
         <p:panel header="Register A New Event">
-            <h:panelGrid columns="2" columnClasses="label, value">
+            <p:panelGrid columns="2" columnClasses="label, value">
 
                 <h:outputText style="font-size: large" value="EventType"/>
                 <h:selectOneMenu style="font-size: large" id="EventType" value="#{eventController.event.eventtype}" >
@@ -27,21 +26,21 @@
                 <h:inputText style="font-size: large" id="description" value="#{eventController.event.description}" required="true" label="Description"/>
 
                 <h:outputText for="datetime" value="Datetime:"/>
-                <p:calendar id="datetime" value="#{calendarView.date10}" pattern="MM/dd/yyyy HH:mm:ss"/>
+                <p:calendar id="datetime" value="#{calendarView.date10}" pattern="MM/dd/yyyy HH:mm:ss" />
 
-            </h:panelGrid>
+            </p:panelGrid>
         </p:panel>
         <p:commandButton  value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" action="#{eventController.persistNewEvent()}"/>
 
         <p:dialog modal="true" resizable="false" header="New Event" widgetVar="dlg" showEffect="fold">
-            <h:panelGrid id="display" columns="2" columnClasses="label, value">
+            <p:panelGrid id="display" columns="2" columnClasses="label, value">
                 <h:outputText value="Datetime:"/>
 
                 <h:outputText value="#{calendarView.date10}">
                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss"/>
                 </h:outputText>
 
-            </h:panelGrid>
+            </p:panelGrid>
         </p:dialog>
         </h:form>
 

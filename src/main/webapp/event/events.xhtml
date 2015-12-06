@@ -9,13 +9,16 @@
 <ui:composition template="../template.xhtml">
 
     <ui:define name="content">
+        <p:panel header="List of Events">
+        <p:messages/>
+
         <p:dataTable var="event" value="#{eventController.getAllEvents() }">
             <p:column headerText="id" colspan="3" style="text-align: left">
                 <h:outputText value="#{event.id}"/>
             </p:column>
 
             <p:column headerText="Type" colspan="3" style="text-align: left">
-                <h:outputText value="#{event}"/>
+                <h:outputText value="#{event.eventtype}"/>
             </p:column>
 
             <p:column headerText="Title" colspan="3" style="text-align: left">
@@ -23,15 +26,7 @@
             </p:column>
 
             <p:column headerText="Description" colspan="3" style="text-align: left">
-                <h:outputText value="#{event.desription}"/>
-            </p:column>
-
-            <p:column headerText="Start" colspan="3" style="text-align: left">
-                <h:outputText value="#{event.startpoint}"/>
-            </p:column>
-
-            <p:column headerText="Finish" colspan="3" style="text-align: left">
-                <h:outputText value="#{event.stoppoint}"/>
+                <h:outputText value="#{event.description}"/>
             </p:column>
 
             <p:column headerText="Details" colspan="3" style="text-align: left">
@@ -39,7 +34,10 @@
                     <f:param name="id" value="#{event.id}"/>
                 </p:link>
             </p:column>
+
         </p:dataTable>
+        </p:panel>
+
     </ui:define>
 </ui:composition>
 </html>

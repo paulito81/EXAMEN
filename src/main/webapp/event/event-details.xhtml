@@ -8,25 +8,23 @@
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
-        <f:metadata>
-            <f:viewParam name="id" value="#{eventController.eventId}"/>
-            <f:viewAction action="#{eventController.getDetailedEvent()}"/>
-        </f:metadata>
+        <p:panel header="Register A New Event">
+            <p:panelGrid columns="2" columnClasses="label, value">
+                <f:metadata>
+                    <f:viewParam name="event" value="#{eventController.eventDetail.id}"/>
+                    <f:viewAction action="#{eventController.init()}"/>
+                </f:metadata>
 
-        <h2><h:outputText value="#{eventController.event.title}"/></h2>
-        <ul>
-            <li>Type: <h:outputText value="#{eventController.event.eventtype}"/></li>
-            <li>Title: <h:outputText value="#{eventController.event.title}"/></li>
-            <li>Description: <h:outputText value="#{eventController.event.description}"/></li>
-            <li>
-                <p:column headerText="Details" colspan="3" style="text-align: left">
-                    <p:link outcome="event-time_details" value="Details">
-                        <f:param name="id" value="#{.id}"/>
-                    </p:link>
-                </p:column>
-            </li>
-
-        </ul>
+                <h:outputLabel style="font-size: large" value="Description"/>
+                <h:outputText style="font-size: large" id="title" value="#{eventController.event.getDescription()}"/>
+                <h:outputLabel style="font-size: large" value="Start-time"/>
+                <h:outputText style="font-size: large" id="start" value="#{eventController.eventDetail.getStartPoint}"
+                              required="true" label="Start-time:"/>
+                <h:outputLabel style="font-size: large" value="End-time"/>
+                <h:outputText style="font-size: large" id="end" value="#{eventController.eventDetail.getStopPoint}"
+                              required="true" label="End-time"/>
+            </p:panelGrid>
+        </p:panel>
     </ui:define>
 </ui:composition>
 </html>

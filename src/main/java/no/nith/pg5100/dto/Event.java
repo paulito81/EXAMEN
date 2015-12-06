@@ -25,12 +25,9 @@ public class Event {
     @NotNull @Size(min = 5, max =100)
     private String description;
 
-   // private String name;
-
     @NotNull
     @Enumerated(EnumType.STRING)
     private EventType eventtype;
-
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "EVENT_DET")
@@ -44,15 +41,7 @@ public class Event {
         this.description = description;
         this.eventtype = eventtype;
     }
-/*
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-*/
     public int getId() {
         return id;
     }
