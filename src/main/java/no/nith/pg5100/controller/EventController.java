@@ -42,8 +42,6 @@ public class EventController {
         event = new Event();
     }
 
-
-
     public void persistNewEvent(){
         eventDAO.persistEvent(event);
     }
@@ -73,7 +71,8 @@ public class EventController {
     }
 
     public List<SelectItem> getEventTypes(){
-        return Arrays.asList(EventType.values()).stream().map(e-> new SelectItem(e, e.name())).collect(Collectors.toList());
+      //  return Arrays.asList(EventType.values()).stream().map(e-> new SelectItem(e, e.name())).collect(Collectors.toList());
+          return Arrays.stream(EventType.values()).map(e-> new SelectItem(e, e.name())).collect(Collectors.toList());
 
     }
 

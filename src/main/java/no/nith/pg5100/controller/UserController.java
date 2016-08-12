@@ -56,7 +56,8 @@ public class UserController {
     }
 
     public List<SelectItem> getUserTypes() {
-        return Arrays.asList(UserType.values()).stream().map(t -> new SelectItem(t, t.name())).collect(Collectors.toList());
+        //        return Arrays.asList(UserType.values()).stream().map(t -> new SelectItem(t, t.name())).collect(Collectors.toList());
+        return Arrays.stream(UserType.values()).map(t -> new SelectItem(t, t.name())).collect(Collectors.toList());
     }
 
     public List<User> getAllUsers(){
@@ -69,8 +70,8 @@ public class UserController {
     }
 
     public List<SelectItem> getWorkTypes(){
-        return Arrays.asList(UserType.values()).stream().map(t-> new SelectItem(t, t.name())).collect(Collectors.toList());
-
+        //        return Arrays.asList(UserType.values()).stream().map(t-> new SelectItem(t, t.name())).collect(Collectors.toList());
+        return Arrays.stream(UserType.values()).map(t-> new SelectItem(t, t.name())).collect(Collectors.toList());
     }
 
     public void deleteUserById(){

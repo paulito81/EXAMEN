@@ -16,13 +16,13 @@ public class EventDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DETAIL")
-    public int id;
+    private int id;
 
     @NotNull
-    Timestamp startPoint;
+    private Timestamp startPoint;
 
     @NotNull
-    Timestamp stopPoint;
+    private Timestamp stopPoint;
 
     public EventDetail( Timestamp startPoint, Timestamp stopPoint) {
 

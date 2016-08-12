@@ -11,13 +11,15 @@
         <h:form>
 
             <p:panel header="Register A New User">
-                <p:messages/>
+              <p:messages id="message" showDetail="true" autoUpdate="true" closable="true"/>
                 <p:panelGrid columns="2" columnClasses="label, value">
 
                     <h:outputText style="font-size: large" value="E-mail"  />
-                    <h:inputText style="font-size: large" id="email" value="#{userController.user.email}" required="true" label="Email"/>
+                    <h:inputText style="font-size: large" id="email" value="#{userController.user.email}" required="true" label="Email" />
+
                     <h:outputText style="font-size: large" value="Password"/>
-                    <h:inputSecret style="font-size: large" id="password" value="#{userController.user.password}" required="true" label="Password"/>
+                    <h:inputSecret style="font-size: large" id="password" value="#{userController.user.password}" required="true" label="Password" size="8"/>
+
                     <h:outputLabel style="font-size: large" value="Type"/>
                     <h:selectOneMenu style="font-size: large" id="WorkType" value="#{userController.user.userType}" required="true" label="Worktype">
                         <f:selectItems value="#{userController.getWorkTypes()}"/>
@@ -25,7 +27,7 @@
                 </p:panelGrid>
                 <br/>
                 <div align="left">
-                    <p:commandButton style="font-size: large" icon="ui-icon-check" value="Submit" action="#{userController.persistNewUser() }"/>
+                    <p:commandButton style="font-size: large" icon="ui-icon-check" value="Submit" onclick="return" action="#{userController.persistNewUser() }"/>
                 </div>
             </p:panel>
         </h:form>
